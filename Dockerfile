@@ -8,4 +8,4 @@ COPY . /app
 WORKDIR /app
 
 USER nobody
-CMD [ "gunicorn", "-b", "0.0.0.0:5000", "nginx-ldap-connector:app" ]
+CMD [ "gunicorn", "-b", "0.0.0.0:5555", "nginx-ldap-connector:app" ]
