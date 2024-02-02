@@ -20,11 +20,13 @@ services:
     ports:
       - '5555:5555'
     environment:
-      ldap_server: 'ldap.example.org'
-      ldap_port: 636
-      ldap_base_dn: 'ou=,dc=,dc='
-      ldap_user_dn: 'uid={username},ou=,dc=,dc='
-      ldap_search_filter: '(uid={username})'
+      LDAP_SERVER: 'ldap.example.org'
+      LDAP_PORT: 636
+      LDAP_BASE_DN: 'ou=,dc=,dc='
+      LDAP_USER_DN: 'uid={username},ou=,dc=,dc='
+      LDAP_SEARCH_FILTER: '(uid={username})'
+      LISTEN_ADDR: '0.0.0.0'
+      LISTEN_PORT: 5555
 ```
 
 ### NGINX
@@ -57,5 +59,5 @@ and run the flask app:
 
 ```
 pip install -r requirements.txt
-flask --app nginx-ldap-auth run
+python nginx-ldap-connector.py
 ```
