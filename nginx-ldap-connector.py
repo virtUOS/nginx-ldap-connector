@@ -76,5 +76,5 @@ def auth():
 
 
 if __name__ == '__main__':
-    app.run(host=os.environ.get('LISTEN_ADDR', '0.0.0.0'),
+    app.run(host=os.environ.get('LISTEN_ADDR', '127.0.0.1'),
             port=os.environ.get('LISTEN_PORT' '5000'))
