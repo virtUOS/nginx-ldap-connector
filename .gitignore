@@ -10,6 +10,7 @@ dist/
 
 # Environment
 venv/
+.env
 
 # Editor
 .vscode
