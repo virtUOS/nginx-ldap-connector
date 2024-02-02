@@ -27,6 +27,7 @@ services:
       LDAP_SEARCH_FILTER: '(uid={username})'
       LISTEN_ADDR: '0.0.0.0'
       LISTEN_PORT: 5555
+      LOGLEVEL: info
 ```
 
 ### NGINX

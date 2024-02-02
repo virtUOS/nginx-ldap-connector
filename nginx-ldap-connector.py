@@ -5,7 +5,7 @@ from flask import Flask, request
 from ldap3 import Server, Connection, ALL, AUTO_BIND_NO_TLS
 
 # Logger
-logger = logging.getLogger(__name__)
+logging.root.setLevel(os.environ.get('LOGLEVEL', 'INFO').upper())
 
 ldap_server = os.environ['LDAP_SERVER']
 ldap_port = int(os.environ['LDAP_PORT'])
@@ -39,20 +39,20 @@ def ldap_login(username: str, password: str) -> dict[str, list]:
     '''
     user_dn = ldap_user_dn.format(username=username)
 
-    logger.debug('Trying to log into LDAP with user_dn `%s`', user_dn)
+    logging.debug('Trying to log into LDAP with user_dn `%s`', user_dn)
     conn = connect(user_dn, password)
-    logger.debug('Login successful with user_dn `%s`', user_dn)
+    logging.debug('Login successful with user_dn `%s`', user_dn)
 
     attributes = []
 
-    logger.debug('Searching for user data')
+    logging.debug('Searching for user data')
     conn.search(
             ldap_base_dn,
             ldap_search_filter.format(username=username),
             attributes=attributes)
     if len(conn.entries) != 1:
         raise ValueError('Search must return exactly one result', conn.entries)
-    logger.debug('Found user data')
+    logging.debug('Found user data')
     return conn.entries[0].entry_attributes_as_dict
 
 
@@ -61,7 +61,8 @@ def check_auth(auth):
         return False
     try:
         ldap_login(auth.username, auth.password)
-    except Exception:
+    except Exception as e:
+        logging.debug('Error logging in: %s', e)
         return False
     return True
 
