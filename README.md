@@ -15,7 +15,7 @@ version: '3'
 
 services:
   nginx-ldap-connector:
-    image: ghrc.io/virtuos/nginx-ldap-connector:latest
+    image: ghcr.io/virtuos/nginx-ldap-connector:latest
     restart: unless-stopped
     ports:
       - '5555:5555'
