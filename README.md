@@ -36,8 +36,8 @@ you can do the following:
 
 ```
     location /private/ {
-    auth_request /auth;
-    #...
+        auth_request /auth;
+        #...
     }
 
     location = /auth {
