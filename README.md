@@ -11,8 +11,6 @@ Just make sure to configure it to be compatible with your ldap.
 
 ```yml
 ---
-version: '3'
-
 services:
   nginx-ldap-connector:
     image: ghcr.io/virtuos/nginx-ldap-connector:main
